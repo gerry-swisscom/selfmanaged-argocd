@@ -66,6 +66,23 @@ server:
         automated:
           selfHeal: true
           prune: true
+    - name: argocd-demo
+      namespace: argocd
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      project: argocd
+      source:
+        path: argocd-demo
+        repoURL: https://github.com/gerry-swisscom/selfmanaged-argocd.git
+        targetRevision: HEAD
+        directory:
+          recurse: true
+          jsonnet: {}
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
     - name: argocd-appprojects
       namespace: argocd
       destination:
